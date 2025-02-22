@@ -78,7 +78,7 @@ def ejecutar_asyncio(task):
     loop.close()
 
 # Programar el mensaje semanal (cada domingo a las 12:00)
-schedule.every().saturday.at("14:35").do(lambda: ejecutar_asyncio(enviar_mensaje_semanal))
+schedule.every().sunday.at("00:00").do(lambda: ejecutar_asyncio(enviar_mensaje_semanal))
 
 # Bucle infinito para ejecutar las tareas programadas
 print("✅ Bot semanal iniciado. Esperando el horario programado...")
