@@ -2,3 +2,4 @@ aiogram
 requests
 schedule
 aiohttp
+python-telegram-bot
