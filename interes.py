@@ -1,11 +1,9 @@
-import asyncio
-import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
+import asyncio
+import logging
 
 TOKEN = "7598489828:AAEEhPX4cR4GMndMJS0tqVA1lKRh3FM8AtM"
-CHAT_ID = "589359631"
-
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
@@ -16,13 +14,10 @@ async def calcular_interes_compuesto(message: types.Message):
         capital = float(capital)
         tasa = float(tasa) / 100  # Convertimos porcentaje a decimal
         periodos = int(periodos)
-        
-        # Cálculo del interés compuesto
+
         monto_final = capital * ((1 + tasa) ** periodos)
-        
-        # Cálculo del total invertido con aportes constantes
         total_invertido = sum(capital * ((1 + tasa) ** i) for i in range(periodos))
-        
+
         mensaje = (
             f"📈 *Cálculo de Interés Compuesto*\n"
             f"💵 *Capital inicial:* ${capital:,.2f}\n"
@@ -32,13 +27,13 @@ async def calcular_interes_compuesto(message: types.Message):
             f"📥 *Total invertido con aportes:* ${total_invertido:,.2f}"
         )
     except ValueError:
-        mensaje = "⚠️ Uso incorrecto. Formato correcto: /interes [capital] [tasa] [periodos]\nEjemplo: /interes 50 8 12"
+        mensaje = "⚠️ Uso incorrecto. Formato: /interes [capital] [tasa] [periodos]\nEjemplo: /interes 50 8 12"
 
     await message.answer(mensaje, parse_mode="Markdown")
 
 async def main():
     logging.basicConfig(level=logging.INFO)
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, skip_updates=True)
 
 if __name__ == "__main__":
     asyncio.run(main())
