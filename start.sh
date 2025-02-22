@@ -1,5 +1,5 @@
 #!/bin/bash
 source /opt/venv/bin/activate
-python3 semanal.py &
-python3 comando.py &
-python3 inversion.py
+python3 semanal.py &   # Ejecuta el bot semanal en segundo plano
+python3 interes.py &   # Ejecuta el bot de interés compuesto en segundo plano
+python3 comando.py     # Ejecuta el bot principal (se mantiene en primer plano)
